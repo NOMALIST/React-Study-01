@@ -11,6 +11,7 @@ import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import { red } from '@mui/material/colors';
+import { grey } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -27,11 +28,20 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
+function formatingDate(date) {
+
+    let tDay = new Date(date.createDt);
+
+    let year = tDay.getFullYear();
+    let month = tDay.getMonth()+1;
+    let day = tDay.getDate();
+
+    return year + '-' + month + '-' + day;
+}
+
 const PostingCard = (props) => {
 
     const [expanded, setExpanded] = React.useState(false);
-   
-
     const [blogID, setBlogID] = useState(props.posting.blogId);
     const [postingID, setPostingID] = useState(props.posting.postingID);
     const [userID, setUserID] = useState(props.posting.homePostingUser.userID);
@@ -48,21 +58,30 @@ const PostingCard = (props) => {
         setExpanded(!expanded);
     };
 
+    let formatedDt = formatingDate({createDt});
+
+    // setCreateDt로 하면 오류가 나는데 왜나는지 모르겟다;;;;
+    // setCreateDt(formatedDt);
+
     return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 345, margin: 2, border: 1} }>
         <CardHeader
         avatar={
-            <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            R
+            <Avatar sx={{ bgcolor: grey[400] }} aria-label="recipe">
+            a
             </Avatar>
         }
-        action={
-            <IconButton aria-label="settings">
-            <MoreVertIcon />
-            </IconButton>
-        }
-        title={title}
-        subheader={createDt}  //"September 14, 2016"  YYYY-MM-DD 형태로 표기해야함
+
+        // 이거 닉네임 왜 안먹지
+        // {nickname}
+
+        // action={
+        //     <IconButton aria-label="settings">
+        //     <MoreVertIcon />
+        //     </IconButton>
+        // }
+           
+        subheader={formatedDt} 
         />
         <CardMedia
         component="img"
@@ -70,33 +89,33 @@ const PostingCard = (props) => {
         image={thumbnailImageURL}
         alt="Paella dish"
         />
-        <CardContent>
-        <Typography variant="body2" color="text.secondary">
-            This impressive paella is a perfect party dish and a fun meal to cook
-            together with your guests. Add 1 cup of frozen peas along with the mussels,
-            if you like.
-        </Typography>
+        <CardContent sx={{maxHeight: 100}}>
+            {title }
+            <Typography variant="body2" color="text.secondary">
+                {htmlContent}
+            </Typography>
         </CardContent>
         <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
             <FavoriteIcon />
+            {hitCnt}
         </IconButton>
-        <IconButton aria-label="share">
+        {/* <IconButton aria-label="share">
             <ShareIcon />
-        </IconButton>
+        </IconButton> */}
         <ExpandMore
             expand={expanded}
             onClick={handleExpandClick}
             aria-expanded={expanded}
             aria-label="show more"
         >
-            <ExpandMoreIcon />
+            {/* <ExpandMoreIcon /> */}
         </ExpandMore>
         </CardActions>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
+        {/* <CardContent>
             {htmlContent}
-        </CardContent>
+        </CardContent> */}
         </Collapse>
     </Card>
     );

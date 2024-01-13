@@ -9,10 +9,9 @@ function App() {
  
   return (
     <>
-    {data.map((posting) => { 
-      return <PostingCard key={posting.postingId} posting={posting}/>;
-    })}
-
+      {data.map((posting) => { 
+        return <PostingCard key={posting.postingId} posting={posting}/>;
+      })}
     </>
   );
 }
