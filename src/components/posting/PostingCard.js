@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
@@ -10,9 +10,9 @@ import Collapse from '@mui/material/Collapse';
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import { red } from '@mui/material/colors';
 import { grey } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import { makeStyles } from '@mui/material/styles';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
@@ -27,6 +27,8 @@ const ExpandMore = styled((props) => {
     duration: theme.transitions.duration.shortest,
   }),
 }));
+
+
 
 function formatingDate(date) {
 
@@ -58,19 +60,28 @@ const PostingCard = (props) => {
         setExpanded(!expanded);
     };
 
-    let formatedDt = formatingDate({createDt});
 
-    // setCreateDt로 하면 오류가 나는데 왜나는지 모르겟다;;;;
-    // setCreateDt(formatedDt);
+    // 이렇게 해야 Too many re-renders 오류 안남 ㅡㅡ
+    useEffect(() => {
+        const text = htmlContent.replace(/(<([^>]+)>)/ig,"");
+        setHtmlContent(text);
 
+        let formatedDt = formatingDate({createDt});
+        setCreateDt(formatedDt);
+
+        // let nick = 'by ' + nickname;
+        // setNickname(nick);
+    });
+        
     return (
-    <Card sx={{ maxWidth: 345, margin: 2, border: 1} }>
+    <Card sx={{ maxWidth: 345, margin: 2, display:'inline-block'} }>
         <CardHeader
         avatar={
             <Avatar sx={{ bgcolor: grey[400] }} aria-label="recipe">
             a
             </Avatar>
         }
+
 
         // 이거 닉네임 왜 안먹지
         // {nickname}
@@ -80,8 +91,8 @@ const PostingCard = (props) => {
         //     <MoreVertIcon />
         //     </IconButton>
         // }
-           
-        subheader={formatedDt} 
+        title = {nickname}
+        subheader={createDt} 
         />
         <CardMedia
         component="img"
@@ -89,9 +100,12 @@ const PostingCard = (props) => {
         image={thumbnailImageURL}
         alt="Paella dish"
         />
-        <CardContent sx={{maxHeight: 100}}>
-            {title }
-            <Typography variant="body2" color="text.secondary">
+        
+        <CardContent sx={{maxHeight: 120}}>
+            <Typography sx={{mb:1.5, overflow:'hidden', textOverFlow: 'ellipsis', display:'-webkit-box', WebkitLineClamp: '2', WebkitBoxOrient: 'vertical'}}>
+                {title}
+            </Typography>
+            <Typography variant="body2" color="text.secondary" sx={{maxHeight: 80, overflow:'hidden', textOverFlow: 'ellipsis', display:'-webkit-box', WebkitLineClamp: '4', WebkitBoxOrient: 'vertical'}}>
                 {htmlContent}
             </Typography>
         </CardContent>
