@@ -78,20 +78,18 @@ const PostingCard = (props) => {
         <CardHeader
         avatar={
             <Avatar sx={{ bgcolor: grey[400] }} aria-label="recipe">
-            a
+                {nickname.charAt(0)}
             </Avatar>
         }
 
-
-        // 이거 닉네임 왜 안먹지
-        // {nickname}
+      
 
         // action={
         //     <IconButton aria-label="settings">
         //     <MoreVertIcon />
         //     </IconButton>
         // }
-        title = {nickname}
+        title = {`by ${nickname}`}
         subheader={createDt} 
         />
         <CardMedia
