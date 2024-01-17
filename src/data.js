@@ -1,6 +1,6 @@
 
 
-export let data= [
+const data= [
     {
       "blogID": 15,
       "postingID": 69,
@@ -47,3 +47,5 @@ export let data= [
       "createDt": "2023-11-12T07:48:12.641632"
     }
   ]
+
+  export default data;

@@ -1,17 +1,25 @@
 import React from 'react';
-import PostingCard from './components/posting/PostingCard';
+import {Routes, Route}  from 'react-router-dom';
+import BlogMain from './pages/main/BlogMain';
+import Login from './pages/login/Login';
+import Join from './pages/login/Join';
+import PostingCardDetail from './pages/posting/PostingCardDetail';
+import Header from './components/common/Header';
 import './App.css';
-import {data} from './data'
+
 
 function App() {
- 
-  // const post = {postid:1 , postcontent:'abcd'};
- 
+    
   return (
     <>
-      {data.map((posting) => { 
-        return <PostingCard key={posting.postingId} posting={posting}/>;
-      })}
+      <Header/>
+      <Routes>
+        <Route path="/" element={<BlogMain/>}/>
+        <Route path="/login" element={<Login/>}/>
+        <Route path="/join" element={<Join/>}/>
+        <Route path="/postingCardDetail" element={<PostingCardDetail/>}/>
+      </Routes>
+     
     </>
   );
 }

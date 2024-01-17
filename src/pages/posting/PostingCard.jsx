@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
@@ -42,7 +43,8 @@ function formatingDate(date) {
 }
 
 const PostingCard = (props) => {
-
+    
+    const navigate = useNavigate();
     const [expanded, setExpanded] = React.useState(false);
     const [blogID, setBlogID] = useState(props.posting.blogId);
     const [postingID, setPostingID] = useState(props.posting.postingID);
@@ -60,7 +62,7 @@ const PostingCard = (props) => {
         setExpanded(!expanded);
     };
 
-
+    
     // 이렇게 해야 Too many re-renders 오류 안남 ㅡㅡ
     useEffect(() => {
         const text = htmlContent.replace(/(<([^>]+)>)/ig,"");
@@ -71,10 +73,11 @@ const PostingCard = (props) => {
 
         // let nick = 'by ' + nickname;
         // setNickname(nick);
-    });
+    }, []);
         
+
     return (
-    <Card sx={{ maxWidth: 345, margin: 2, display:'inline-block'} }>
+    <Card sx={{ maxWidth: 345, margin: 2, display:'inline-block'}}  onClick={() => navigate('/PostingCardDetail')} >
         <CardHeader
         avatar={
             <Avatar sx={{ bgcolor: grey[400] }} aria-label="recipe">
