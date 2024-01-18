@@ -1,18 +1,21 @@
 import {Button} from '@mui/material';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 const Header = () => {
 
     const navigate = useNavigate();
-    const location= useLocation();
+    const location = useLocation();
 
-    const [loginYN, setLoginYN] = useState(
-        location.state?.loginYN
-    );
+    const [loginYN, setLoginYN] = useState(false);  
 
+    useEffect(() => {
+        let temp = location.state?.loginYN;
+        setLoginYN(temp);
+    }, [])
+
+    
     console.log(loginYN);
-
 
     return (
          <div style={{display:'flex', justifyContent:'space-between'}}>

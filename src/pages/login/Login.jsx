@@ -53,7 +53,9 @@ function emailRegCheck (string) {
 
       if(emailRegCheck(data.get('email'))) {    // 이메일 형식이 맞을 때
         if(data.get('email') === 'jane20180@naver.com' && data.get('password') === 'aaaa') {
+            console.log('로그인 인증 성공');
             navigate('/', {state: {loginYN: true}});
+            window.location.reload()
         } else {
             setwaringMessage("입력하신 정보가 일치하지 않습니다.");
         }

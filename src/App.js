@@ -19,7 +19,6 @@ function App() {
         <Route path="/join" element={<Join/>}/>
         <Route path="/postingCardDetail" element={<PostingCardDetail/>}/>
       </Routes>
-     
     </>
   );
 }
