@@ -1,17 +1,9 @@
 import {Button} from '@mui/material';
 import {useEffect, useState, Fragment} from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-
 import { lightGreen } from '@mui/material/colors';
-
 import Typography from '@mui/material/Typography';
-
 import Toolbar from '@mui/material/Toolbar';
-
-
-
-
-
 
 
 const Header = () => {
@@ -31,15 +23,6 @@ const Header = () => {
     console.log(loginYN);
 
     return (
-        //  <div style={{display:'flex', justifyContent:'space-between'}}>
-        //    <div  style={{fontWeight: 'bold', fontSize:'25px'}} onClick={() => {navigate('/')}}>
-        //         logo
-        //     </div>
-
-		// 	<div>
-		// // 		<Button onClick={() => navigate('/login')}> { !!loginYN ? '새글' : '로그인'}  </Button>
-		// // 	</div>
-        //  </div>
 
         <Fragment>
             <Toolbar sx={{ borderBottom: 1, borderColor: 'divider',  bgcolor: lightGreen[100] }}>
