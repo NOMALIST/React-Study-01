@@ -11,16 +11,10 @@ const Header = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    const [loginYN, setLoginYN] = useState(false);  
+    const [isSignin, setIsSignin] = useState(location.state?.loginYN);
     const [title, setTitle] = useState('Blog Main');
 
-    useEffect(() => {
-        let temp = location.state?.loginYN;
-        setLoginYN(temp);
-    }, [])
-
-    
-    console.log(loginYN);
+    console.log(isSignin);
 
     return (
 
@@ -38,13 +32,22 @@ const Header = () => {
                     {title}
                 </Typography>
 
-                <Button variant="contained" size="small" color="success" sx={{mr:1}}
+                <Button variant="contained" size="small" color="success" 
+                        sx={{mr:1, display: !!isSignin ? 'none' : 'inline-flex'}}
                         onClick={() => navigate('/login')}>
                     Sign in
                 </Button>
                 <Button variant="contained" size="small" color="success"
-                        onClick={() => navigate('/Join')}>
+                        sx={{display: !!isSignin ? 'none' : 'inline-flex'}}
+                        onClick={() => navigate('/join')}>
                     Sign up
+                </Button>
+                <Button variant="contained" size="small" color="success"
+                        sx={{display: !!isSignin ? 'inline-flex' : 'none'}}
+                        onClick={() => {
+                            setIsSignin(false);
+                        }}>
+                    Logout
                 </Button>
             </Toolbar>
         </Fragment>
