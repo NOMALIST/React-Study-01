@@ -14,7 +14,7 @@ const Header = () => {
     const [isSignin, setIsSignin] = useState(location.state?.loginYN);
     const [title, setTitle] = useState('Blog Main');
 
-    console.log(isSignin);
+    // console.log(isSignin);
 
     return (
 
@@ -38,12 +38,19 @@ const Header = () => {
                     Sign in
                 </Button>
                 <Button variant="contained" size="small" color="success"
-                        sx={{display: !!isSignin ? 'none' : 'inline-flex'}}
+                        sx={{mr:1, display: !!isSignin ? 'none' : 'inline-flex'}}
                         onClick={() => navigate('/join')}>
                     Sign up
                 </Button>
                 <Button variant="contained" size="small" color="success"
-                        sx={{display: !!isSignin ? 'inline-flex' : 'none'}}
+                        sx={{mr:1, display: !!isSignin ? 'inline-flex' : 'none'}}
+                        onClick={() => {
+                            navigate('/');
+                        }}>
+                    새글
+                </Button>
+                <Button variant="contained" size="small" color="success"
+                        sx={{mr:1, display: !!isSignin ? 'inline-flex' : 'none'}}
                         onClick={() => {
                             setIsSignin(false);
                         }}>

@@ -8,7 +8,6 @@ import Header from './components/common/Header';
 
 import './App.css';
 
-
 function App() {
     
   return (
@@ -19,7 +18,7 @@ function App() {
         <Route path="/" element={<BlogMain/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/join" element={<Join/>}/>
-        <Route path="/postingCardDetail" element={<PostingCardDetail/>}/>
+        <Route path="/blogs/:blogId/postings/:postingId" element={<PostingCardDetail/>}/>
       </Routes>
     </>
   );

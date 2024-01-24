@@ -45,7 +45,7 @@ const PostingCard = (props) => {
         
 
     return (
-    <Card sx={{ maxWidth: 345, margin: 2, display:'inline-block'}}  onClick={() => navigate('/PostingCardDetail')} >
+    <Card sx={{ maxWidth: 345, margin: 2, display:'inline-block'}}  onClick={() => navigate('/blogs/' + props.posting.blogID + '/postings/' + props.posting.postingID)} >
         <CardHeader
         avatar={
             <Avatar sx={{ bgcolor: grey[400] }} aria-label="recipe">
