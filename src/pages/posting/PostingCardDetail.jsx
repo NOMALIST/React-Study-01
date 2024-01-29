@@ -20,12 +20,10 @@ const PostingCardDetail = (props) => {
         .catch((Error)=>{console.log(Error)})
     }, [])
 
-    console.log(post);
 
     return (
         <>
             {!!post.htmlContent && <Viewer initialValue={post.htmlContent}/>}
-            {/* <Viewer initialValue={post.htmlContent}/> */}
         </>
     )
 }

@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
@@ -26,14 +25,15 @@ function formatingDate(date) {
 }
 
 const AvatarChar = (nickname) => {
-    return nickname.charAt(0).toUpperCase()
+    return nickname.charAt(0).toUpperCase();
 }
 
 const PostingCard = (props) => {
     
-    const navigate = useNavigate()
-    const [createDt, setCreateDt] = useState(props.posting.createDt)
-    const [avaterChar, setAvaterChar] = useState(AvatarChar(props.posting.homePostingUser.nickname))
+    const navigate = useNavigate();
+    const [createDt, setCreateDt] = useState(props.posting.createDt);
+    const [avaterChar, setAvaterChar] = useState(AvatarChar(props.posting.homePostingUser?.nickname));
+    
     
 
     useEffect(() => {
@@ -54,7 +54,7 @@ const PostingCard = (props) => {
         }
 
       
-        title = {`by ${props.posting.homePostingUser.nickname}`}
+        title = {`by ${props.posting.homePostingUser?.nickname}`}
         subheader={createDt} 
         />
         <CardMedia

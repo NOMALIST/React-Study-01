@@ -70,7 +70,7 @@ const handleSubmit = (event) => {
     if(data.get('email') === 'jane20180@naver.com' && data.get('password') === 'aaaa') {    // 인증 통과
         console.log('로그인 인증 성공');
         navigate('/', {state: {loginYN: true}});
-        window.location.reload()
+        window.location.reload();
     } else {    // 입력한 정보가 일치하지 않을 때
         setwaringMessage("입력하신 정보가 일치하지 않습니다.");
         console.log('입력하신 정보가 일치하지 않습니다.')
