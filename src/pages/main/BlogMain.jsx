@@ -19,10 +19,11 @@ const BlogMain = (props) => {
         .then((response)=>{
                 let newData = [...apidata, ...response.data];
                 setApidata(newData);
+                setIsLoading(false);
             })
         .catch((Error)=>{console.log(Error)})
         
-        setIsLoading(false);
+        
     }
 
     const handleScroll = () => {
@@ -34,25 +35,23 @@ const BlogMain = (props) => {
         if(scrollLocation + windowHeight + 2 >= fullHeight) {
             console.log('카드 추가');
             addCardInfo();
+            console.log('scrollLocation : ' + scrollLocation);
+            console.log('windowHeight : ' + windowHeight);
+            console.log('fullHeight :  ' + fullHeight);
         }
-        console.log('scrollLocation : ' + scrollLocation);
-        console.log('windowHeight : ' + windowHeight);
-        console.log('fullHeight :  ' + fullHeight);
 
      };
 
     useEffect(() => {
-        axios.get('http://localhost:4000/homePostings')    
-        .then((response)=>{
-                setApidata(response.data);
-            })
-        .catch((Error)=>{console.log(Error)});
+        addCardInfo();
+    }, [])
 
+    useEffect(() => {
         window.addEventListener("scroll", handleScroll);
         return () => {
             window.removeEventListener("scroll", handleScroll);
         };
-    }, [])
+    }, [apidata])
        
     const SkeletonCard = () => {
         return (
