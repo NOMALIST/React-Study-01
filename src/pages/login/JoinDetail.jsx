@@ -46,6 +46,7 @@ function Copyright(props) {
 export default function JoinDetail (props) {
 
     const [gender, setGender] = useState('');
+    const [value, setValue] = React.useState(null);
     
 
     const handleSubmit = (event) => {
@@ -151,10 +152,10 @@ export default function JoinDetail (props) {
                 <Grid item xs={12} sm={3}>
                   <label>생일*</label>
                 </Grid>
-                <Grid item xs={12} sm={6}>
+                <Grid item xs={12} sm={9}>
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DemoContainer components={['DatePicker']}>
-                      <DatePicker label="Basic date picker" />
+                      <DatePicker value={value} onChange={(newValue) => setValue(newValue)} />
                     </DemoContainer>
                   </LocalizationProvider>
                 </Grid>
@@ -163,27 +164,30 @@ export default function JoinDetail (props) {
                   <TextField
                     required
                     fullWidth
-                    id="email"
-                    label="Email Address"
-                    name="email"
-                    autoComplete="email"
+                    id="blogName"
+                    label="블로그 이름(4자 이상, 영문 소문자와 숫자만 조합가능합니다.)"
+                    name="blogName"
+                    autoComplete="blogName"
                   />
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
                     required
                     fullWidth
-                    name="password"
-                    label="Password"
-                    type="password"
-                    id="password"
-                    autoComplete="new-password"
+                    name="nickname"
+                    label="닉네임"
+                    id="nickname"
+                    autoComplete="nickname"
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <FormControlLabel
-                    control={<Checkbox value="allowExtraEmails" color="primary" />}
-                    label="I want to receive inspiration, marketing promotions and updates via email."
+                  <TextField
+                    required
+                    fullWidth
+                    name="introduce"
+                    label="본인소개"
+                    id="introduce"
+                    autoComplete="introduce"
                   />
                 </Grid>
               </Grid>
@@ -207,6 +211,7 @@ export default function JoinDetail (props) {
           <Copyright sx={{ mt: 5 }} />
         </Container>
       </ThemeProvider>
+
       </>
       );
 }
