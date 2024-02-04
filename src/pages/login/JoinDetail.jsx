@@ -58,11 +58,18 @@ export default function JoinDetail (props) {
           firstName: data.get('firstName'),
           blogName: data.get('blogName'),
           nickname: data.get('nickname'),
-          introduce: data.get('introduce'),
+          introduce: data.get('introduce')
           // 성별, 생일 추가해야함
         });
         
-        props.onData(data);
+        props.onData({
+          lastName: data.get('lastName'),
+          firstName: data.get('firstName'),
+          blogName: data.get('blogName'),
+          nickname: data.get('nickname'),
+          introduce: data.get('introduce')
+          // 성별, 생일 추가해야함
+        });
         props.handleNextStep();
       };
 

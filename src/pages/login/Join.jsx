@@ -20,7 +20,8 @@ const Join = (props) => {
     }
 
     const handleData = (data) => {
-        let newUserInfo = {...userInfo}
+        console.log('전송받은 data : ' + data);
+        let newUserInfo = {...userInfo};
         if(step === 1) {
             newUserInfo.email = data.email;
             newUserInfo.password = data.password;
@@ -35,7 +36,7 @@ const Join = (props) => {
         }
 
         setUserInfo(newUserInfo);
-        console.log('userinfo : ' + userInfo);
+        console.log('userinfo : ' + userInfo.email);
     }
 
     return (

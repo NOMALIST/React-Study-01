@@ -80,7 +80,10 @@ export default function JoinEmail (props) {
             passwordConfirm: data.get('passwordConfirm')
           });
 
-        props.onData(data);
+        props.onData({
+          'email': data.get('email'),
+          'password': data.get('password'),
+        });
         props.handleNextStep();
 
       };
