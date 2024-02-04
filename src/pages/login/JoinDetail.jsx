@@ -52,21 +52,40 @@ export default function JoinDetail (props) {
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
+
         console.log({
-          email: data.get('email'),
-          password: data.get('password'),
+          lastName: data.get('lastName'),
+          firstName: data.get('firstName'),
+          blogName: data.get('blogName'),
+          nickname: data.get('nickname'),
+          introduce: data.get('introduce'),
+          // 성별, 생일 추가해야함
         });
+        
+        props.onData(data);
+        props.handleNextStep();
       };
 
 
       const selectGender = (event) => {
         event.preventDefault();
-        console.log(event.target.value);
+        // console.log(event.target.value);
         if(event.target.value == 'mail') {
             setGender('mail');
         } else if(event.target.value == 'femail') {
             setGender('femail');
         }
+      }
+
+      const regex = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|]+$/;  // 한글, 영어만
+      const textChecker = (event) => {
+        event.preventDefault();
+
+        let str = event.target.value;
+        if(!regex.test(str.charAt(str.length-1))) {
+          event.target.value = str.slice(0, -1);
+        }
+
       }
 
 
@@ -109,18 +128,19 @@ export default function JoinDetail (props) {
                     id="lastName"
                     label="성"
                     name="lastName"
-                    autoComplete="lastName"
+                    variant="standard"
+                    onChange={textChecker}
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <TextField
-                    autoComplete="given-name"
-                    name="firstName"
                     required
                     fullWidth
                     id="firstName"
                     label="이름"
-                    autoFocus
+                    name="firstName"
+                    variant="standard"
+                    onChange={textChecker}
                   />
                 </Grid>
                 <Grid item xs={12} sm={2}>
@@ -168,6 +188,7 @@ export default function JoinDetail (props) {
                     label="블로그 이름(4자 이상, 영문 소문자와 숫자만 조합가능합니다.)"
                     name="blogName"
                     autoComplete="blogName"
+                    variant="standard"
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -178,6 +199,7 @@ export default function JoinDetail (props) {
                     label="닉네임"
                     id="nickname"
                     autoComplete="nickname"
+                    variant="standard"
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -188,6 +210,7 @@ export default function JoinDetail (props) {
                     label="본인소개"
                     id="introduce"
                     autoComplete="introduce"
+                    variant="standard"
                   />
                 </Grid>
               </Grid>
@@ -197,7 +220,7 @@ export default function JoinDetail (props) {
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
-                Sign Up
+                가입 완료하기
               </Button>
               <Grid container justifyContent="flex-end">
                 <Grid item>

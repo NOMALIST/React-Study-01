@@ -38,7 +38,7 @@ function Copyright(props) {
  
   const defaultTheme = createTheme();
 
-  export default function JoinEmail (props) {
+export default function JoinEmail (props) {
 
     
 
@@ -80,7 +80,8 @@ function Copyright(props) {
             passwordConfirm: data.get('passwordConfirm')
           });
 
-        props.handleJoinStep(2);
+        props.onData(data);
+        props.handleNextStep();
 
       };
 
@@ -128,8 +129,7 @@ function Copyright(props) {
                   />
                 </Grid>
                 <Grid item xs={12} sm={3}>
-                    <button
-                        fullWidth
+                    <button                        
                         variant="contained"
                         >
                         이메일 인증
@@ -164,7 +164,7 @@ function Copyright(props) {
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
-                Sign Up
+                다음 단계 진행하기
               </Button>
               <Grid container justifyContent="flex-end">
                 <Grid item>
