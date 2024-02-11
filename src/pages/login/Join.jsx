@@ -20,11 +20,14 @@ const Join = (props) => {
     }
 
     const handleData = (data) => {
-        console.log('전송받은 data : ' + data);
+        console.log('전송받은 data : ');
+        console.log(data.email);
+        console.log(step);
         let newUserInfo = {...userInfo};
         if(step === 1) {
             newUserInfo.email = data.email;
             newUserInfo.password = data.password;
+            console.log(newUserInfo);
         } else if(step === 2) {
             newUserInfo.lastName = data.lastName;
             newUserInfo.firstName = data.firstName;
@@ -33,10 +36,11 @@ const Join = (props) => {
             newUserInfo.blogName = data.blogName;
             newUserInfo.nickname = data.nickname;
             newUserInfo.introduce = data.introduce;
+            console.log(newUserInfo);
         }
 
         setUserInfo(newUserInfo);
-        console.log('userinfo : ' + userInfo.email);
+        
     }
 
     return (

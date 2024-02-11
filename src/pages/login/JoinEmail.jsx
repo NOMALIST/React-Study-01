@@ -39,8 +39,7 @@ function Copyright(props) {
   const defaultTheme = createTheme();
 
 export default function JoinEmail (props) {
-
-    
+   
 
     function emailRegCheck (string) {
         const reg =
